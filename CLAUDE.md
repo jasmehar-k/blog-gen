@@ -57,3 +57,4 @@ Copy `.env.template` to `.env` and configure as needed.
 9. clear separation of concerns
 10. use langchain
 11. use openrouter api key in .env
+12. use a free model from openrouter

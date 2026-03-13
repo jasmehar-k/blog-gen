@@ -37,7 +37,7 @@ class Settings(BaseSettings):
 
     # OpenRouter API settings
     openrouter_api_key: Optional[str] = Field(default=None, description="OpenRouter API key for LLM calls")
-    model_name: str = Field(default="anthropic/claude-3-haiku", description="LLM model to use")
+    model_name: str = Field(default="arcee-ai/trinity-large-preview:free", description="LLM model to use")
     model_temperature: float = Field(default=0.7, description="LLM temperature (0.0-1.0)")
     model_max_tokens: int = Field(default=2000, description="Maximum tokens for LLM response")
 

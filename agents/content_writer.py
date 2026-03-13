@@ -6,8 +6,8 @@ initial blog content drafts using LLM calls via LangChain.
 
 from typing import Optional
 
-from langchain_openrouter import ChatOpenRouter
-from langchain.schema import HumanMessage
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 
 from agents.base_agent import BaseAgent
 from config import settings, get_openrouter_api_key
@@ -38,14 +38,14 @@ class ContentWriterAgent(BaseAgent):
     def __init__(self) -> None:
         """Initialize the ContentWriterAgent."""
         super().__init__(name="content_writer")
-        self._llm: Optional[ChatOpenRouter] = None
+        self._llm: Optional[ChatOpenAI] = None
 
     @property
-    def llm(self) -> ChatOpenRouter:
+    def llm(self) -> ChatOpenAI:
         """Get or create the LLM client.
 
         Returns:
-            The ChatOpenRouter client instance.
+            The ChatOpenAI client instance configured for OpenRouter.
 
         Raises:
             RuntimeError: If the LLM cannot be initialized.
@@ -53,9 +53,10 @@ class ContentWriterAgent(BaseAgent):
         if self._llm is None:
             try:
                 api_key = get_openrouter_api_key()
-                self._llm = ChatOpenRouter(
-                    model_name=settings.model_name,
-                    openrouter_api_key=api_key,
+                self._llm = ChatOpenAI(
+                    model=settings.model_name,
+                    api_key=api_key,
+                    base_url="https://openrouter.ai/api/v1",
                     temperature=settings.model_temperature,
                     max_tokens=settings.model_max_tokens,
                 )
