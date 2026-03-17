@@ -58,8 +58,3 @@ python main.py --topic "How to Start a Blog"
 ```bash
 pytest -q
 ```
-
-## Notes
-
-- This is an MVP scaffold with placeholder agent logic.
-- Replace agent internals with your preferred LLM/provider integration.
